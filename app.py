@@ -27,7 +27,7 @@ async def create_blogs(request:Request):
     llm=groqllm.get_llm()
 
     ## get the graph
-    graph_builder=GraphBuilder(llm)
+    graph_builder= GraphBuilder(llm)
     if topic:
         graph=graph_builder.setup_graph(usecase="topic")
         state=graph.invoke({"topic":topic})
