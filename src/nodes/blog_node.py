@@ -57,8 +57,12 @@ class BlogNode:
             HumanMessage(translation_prompt.format(current_language=state["current_language"], blog_content=blog_content))
 
         ]
-        transaltion_content = self.llm.with_structured_output(Blog).invoke(messages)
-        return {"blog": {"content": transaltion_content}}
+        # Produce plain text translation to ensure consistent API shape
+        response = self.llm.invoke(messages)
+        translated = getattr(response, "content", "")
+        if not translated:
+            translated = blog_content
+        return {"blog": {"title": state['blog']['title'], "content": translated}}
 
     def route(self, state: BlogState):
         return {"current_language": state['current_language'] }
