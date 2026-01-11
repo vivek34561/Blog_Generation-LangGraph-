@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Blog Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/alt.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <header class="topbar">
+      <div class="brand">AI Blog Studio</div>
+      <nav class="topnav">
+        <a href="/" class="nav-link active">Home</a>
+        <a href="#" class="nav-link" id="toggle-theme">Toggle Theme</a>
+      </nav>
+    </header>
+
+    <section class="content">
+      <header class="hero">
+        <h1>Create and export blogs effortlessly</h1>
+        <p>Type a topic, choose a language, generate rich content, and download as Markdown.</p>
+      </header>
+
+      <div class="grid">
+        <div class="panel form-panel">
+          <form id="studio-form" class="form">
+            <div class="field">
+              <label>Topic</label>
+              <input id="studio-topic" type="text" placeholder="e.g. Building resilient microservices" required />
+            </div>
+            <div class="field">
+              <label>Language</label>
+              <div class="chips" id="lang-chips">
+                <button type="button" data-lang="" class="chip chip-active">English</button>
+                <button type="button" data-lang="hindi" class="chip">Hindi</button>
+                <button type="button" data-lang="french" class="chip">French</button>
+              </div>
+              <input id="studio-language" type="hidden" value="" />
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn primary">Generate</button>
+              <button type="button" class="btn ghost" id="studio-clear">Clear</button>
+            </div>
+            <div class="export-actions">
+              <button class="btn small" id="studio-copy">Copy</button>
+              <button class="btn small" id="studio-download">Download .md</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel output-panel" id="studio-output" aria-live="polite">
+          <div class="output-header">
+            <div class="output-left">
+              <h2 id="studio-title">Your AI Blog</h2>
+              <span id="studio-status" class="status">Idle</span>
+            </div>
+          </div>
+          <article id="studio-content" class="markdown"></article>
+          <div id="studio-loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Generating content…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/alt.js"></script>
+</body>
+</html>
